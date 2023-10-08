@@ -1,0 +1,104 @@
+@page "/invoices"
+
+<h1>Invoices</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Unpaid Invoices</h5>
+                <hr />
+                @if (unpaidInvoices == null)
+                {
+                    <p>Loading invoices...</p>
+                }
+                else if (unpaidInvoices.Count == 0)
+                {
+                    <p>No unpaid invoices found.</p>
+                }
+                else
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var invoice in unpaidInvoices)
+                            {
+                                <tr>
+                                    <td>@invoice.Date.ToShortDateString()</td>
+                                    <td>@invoice.Amount.ToString("C")</td>
+                                    <td>
+                                        <button class="btn btn-primary" @onclick="@(() => PayInvoice(invoice))">Pay</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Paid Invoices</h5>
+                <hr />
+                @if (paidInvoices == null)
+                {
+                    <p>Loading invoices...</p>
+                }
+                else if (paidInvoices.Count == 0)
+                {
+                    <p>No paid invoices found.</p>
+                }
+                else
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var invoice in paidInvoices)
+                            {
+                                <tr>
+                                    <td>@invoice.Date.ToShortDateString()</td>
+                                    <td>@invoice.Amount.ToString("C")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<Invoice> unpaidInvoices;
+    private List<Invoice> paidInvoices;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Load unpaid and paid invoices here
+    }
+
+    private async Task PayInvoice(Invoice invoice)
+    {
+        // Handle invoice payment logic here
+    }
+
+    private class Invoice
+    {
+        public DateTime Date { get; set; }
+        public decimal Amount { get; set; }
+        public bool IsPaid { get; set; }
+    }
+}

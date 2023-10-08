@@ -1,0 +1,59 @@
+@page "/help"
+
+<h1>Help</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Frequently Asked Questions</h5>
+                <hr />
+                <ul>
+                    <li>How do I book an appointment?</li>
+                    <li>How do I cancel an appointment?</li>
+                    <li>How do I view my invoices?</li>
+                    <li>How do I pay an invoice?</li>
+                    <li>How do I update my personal information?</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Contact Us</h5>
+                <hr />
+                <p>If you need further assistance, please contact us:</p>
+                <ul>
+                    <li>Email: support@yourapp.com</li>
+                    <li>Phone: 555-555-5555</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Chat with Support</h5>
+                <hr />
+                <div class="form-group">
+                    <label for="chat-message">Message:</label>
+                    <input type="text" id="chat-message" class="form-control" @bind="@chatMessage" />
+                </div>
+                <button class="btn btn-primary" @onclick="@SendMessage">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string chatMessage;
+
+    private async Task SendMessage()
+    {
+        // Send chat message logic here
+    }
+}

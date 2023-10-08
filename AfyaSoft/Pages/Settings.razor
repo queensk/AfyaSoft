@@ -1,0 +1,111 @@
+@page "/settings"
+
+<h1>Settings</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">General Settings</h5>
+                <hr />
+                <div class="form-group">
+                    <label for="timezone">Timezone:</label>
+                    <select id="timezone" class="form-control" @bind="@generalSettings.Timezone">
+                        <option value="UTC-12:00">(UTC-12:00) International Date Line West</option>
+                        <option value="UTC-11:00">(UTC-11:00) Coordinated Universal Time-11</option>
+                        <option value="UTC-10:00">(UTC-10:00) Hawaii</option>
+                        <option value="UTC-09:00">(UTC-09:00) Alaska</option>
+                        <option value="UTC-08:00">(UTC-08:00) Pacific Time (US & Canada)</option>
+                        <option value="UTC-07:00">(UTC-07:00) Arizona</option>
+                        <option value="UTC-07:00">(UTC-07:00) Mountain Time (US & Canada)</option>
+                        <option value="UTC-06:00">(UTC-06:00) Central Time (US & Canada)</option>
+                        <option value="UTC-05:00">(UTC-05:00) Eastern Time (US & Canada)</option>
+                        <option value="UTC-04:00">(UTC-04:00) Atlantic Time (Canada)</option>
+                        <option value="UTC-03:30">(UTC-03:30) Newfoundland</option>
+                        <option value="UTC-03:00">(UTC-03:00) Buenos Aires, Georgetown</option>
+                        <option value="UTC-02:00">(UTC-02:00) Mid-Atlantic</option>
+                        <option value="UTC-01:00">(UTC-01:00) Azores</option>
+                        <option value="UTC+00:00">(UTC+00:00) Dublin, Edinburgh, Lisbon, London</option>
+                        <option value="UTC+01:00">(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
+                        <option value="UTC+02:00">(UTC+02:00) Athens, Bucharest, Istanbul</option>
+                        <option value="UTC+03:00">(UTC+03:00) Moscow, St. Petersburg, Volgograd</option>
+                        <option value="UTC+03:30">(UTC+03:30) Tehran</option>
+                        <option value="UTC+04:00">(UTC+04:00) Abu Dhabi, Muscat</option>
+                        <option value="UTC+04:30">(UTC+04:30) Kabul</option>
+                        <option value="UTC+05:00">(UTC+05:00) Islamabad, Karachi, Tashkent</option>
+                        <option value="UTC+05:30">(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi</option>
+                        <option value="UTC+05:45">(UTC+05:45) Kathmandu</option>
+                        <option value="UTC+06:00">(UTC+06:00) Astana, Dhaka</option>
+                        <option value="UTC+06:30">(UTC+06:30) Yangon (Rangoon)</option>
+                        <option value="UTC+07:00">(UTC+07:00) Bangkok, Hanoi, Jakarta</option>
+                        <option value="UTC+08:00">(UTC+08:00) Beijing, Hong Kong, Kuala Lumpur, Singapore</option>
+                        <option value="UTC+08:00">(UTC+08:00) Taipei</option>
+                        <option value="UTC+09:00">(UTC+09:00) Osaka, Sapporo, Tokyo</option>
+                        <option value="UTC+09:30">(UTC+09:30) Adelaide</option>
+                        <option value="UTC+09:30">(UTC+09:30) Darwin</option>
+                        <option value="UTC+10:00">(UTC+10:00) Brisbane</option>
+                        <option value="UTC+10:00">(UTC+10:00) Canberra, Melbourne, Sydney</option>
+                        <option value="UTC+11:00">(UTC+11:00) Solomon Is., New Caledonia</option>
+                        <option value="UTC+12:00">(UTC+12:00) Auckland, Wellington</option>
+                        <option value="UTC+12:00">(UTC+12:00) Fiji, Kamchatka, Marshall Is.</option>
+                        <option value="UTC+13:00">(UTC+13:00) Nuku'alofa</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="language">Language:</label>
+                    <select id="language" class="form-control" @bind="@generalSettings.Language">
+                        <option value="en-US">English (United States)</option>
+                        <option value="en-GB">English (United Kingdom)</option>
+                        <option value="fr-FR">French (France)</option>
+                        <option value="es-ES">Spanish (Spain)</option>
+                        <option value="de-DE">German (Germany)</option>
+                        <option value="it-IT">Italian (Italy)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Notification Settings</h5>
+                <hr />
+                <div class="form-group">
+                    <label for="email-notifications">Email Notifications:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="email-notifications" @bind="@notificationSettings.EmailNotifications" />
+                        <label class="form-check-label" for="email-notifications">
+                            Receive email notifications
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="sms-notifications">SMS Notifications:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="sms-notifications" @bind="@notificationSettings.SmsNotifications" />
+                        <label class="form-check-label" for="sms-notifications">
+                            Receive SMS notifications
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private GeneralSettings generalSettings = new GeneralSettings();
+    private NotificationSettings notificationSettings = new NotificationSettings();
+
+    private class GeneralSettings
+    {
+        public string Timezone { get; set; }
+        public string Language { get; set; }
+    }
+
+    private class NotificationSettings
+    {
+        public bool EmailNotifications { get; set; }
+        public bool SmsNotifications { get; set; }
+    }
+}

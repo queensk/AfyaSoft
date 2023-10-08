@@ -1,0 +1,140 @@
+@page "/profile"
+
+<h1>Profile</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Personal Information</h5>
+                <hr />
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <InputText id="name" class="form-control" @bind-Value="@user.Name" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <InputText id="email" class="form-control" @bind-Value="@user.Email" />
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <InputText id="phone" class="form-control" @bind-Value="@user.Phone" />
+                </div>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <InputTextArea id="address" class="form-control" @bind-Value="@user.Address" />
+                </div>
+                <div class="form-group">
+                    <label for="profile-image">Profile Image:</label>
+                    @* <InputFile id="profile-image" class="form-control" @onchange="HandleProfileImageChange" /> *@
+                    @if (user.ProfileImage != null)
+                    {
+                        <img src="@user.ProfileImage" alt="Profile Image" class="mt-2" style="max-width: 100%;" />
+                    }
+                </div>
+                <div class="form-group">
+                    @if (isEditMode)
+                    {
+                        <button class="btn btn-primary" @onclick="@SaveChanges">Save Changes</button>
+                        <button class="btn btn-secondary ml-2" @onclick="@CancelChanges">Cancel</button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-primary" @onclick="@EditProfile">Edit Profile</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Appointments</h5>
+                <hr />
+                @if (appointments == null)
+                {
+                    <p>Loading appointments...</p>
+                }
+                else if (appointments.Count == 0)
+                {
+                    <p>No appointments found.</p>
+                }
+                else
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Doctor</th>
+                                <th>Hospital</th>
+                                <th>Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var appointment in appointments)
+                            {
+                                <tr>
+                                    <td>@appointment.Date.ToShortDateString()</td>
+                                    <td>@appointment.Doctor</td>
+                                    <td>@appointment.Hospital</td>
+                                    <td>@appointment.Reason</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private User user = new User();
+    private List<Appointment> appointments;
+    private bool isEditMode = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Load user data and appointments here
+    }
+
+    private class User
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Address { get; set; }
+        public string ProfileImage { get; set; }
+    }
+
+    private class Appointment
+    {
+        public DateTime Date { get; set; }
+        public string Doctor { get; set; }
+        public string Hospital { get; set; }
+        public string Reason { get; set; }
+    }
+
+    private void EditProfile()
+    {
+        isEditMode = true;
+    }
+
+    private void CancelChanges()
+    {
+        isEditMode = false;
+    }
+
+    private async Task SaveChanges()
+    {
+        // Save changes logic here
+        isEditMode = false;
+    }
+
+    private async Task HandleProfileImageChange(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        // Upload profile image logic here
+        user.ProfileImage = "https://example.com/profile-image.jpg"; // Replace with actual URL of uploaded image
+    }
+}
