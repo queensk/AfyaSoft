@@ -1,0 +1,10 @@
+
+.user-appointment-card{
+    overflow-x: scroll;
+}
+
+.user-profile img{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+}

@@ -67,3 +67,9 @@
     font-size: 2rem;
     color: black !important;
 }
+
+@media (max-width: 768px) {
+    .appointments-start-card{
+        flex-wrap: wrap;
+    }
+}

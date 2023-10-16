@@ -1,0 +1,118 @@
+@page "/chat"
+@inherits LayoutComponentBase
+
+<link rel="stylesheet" href="chat.css" />
+
+<div class="health-assistant-container">
+    <div class="patient-history">
+        <h2>Patient Medical History</h2>
+        <div class="history-item">
+            @foreach (var historyItem in patientHistory)
+            {
+                <div class="timeline-bar"></div>
+                <div class="user-story-entry">
+                    <div class="entry-header">
+                        <span class="doctor-icon">👨‍⚕️</span>
+                        <strong class="doctor-name">@historyItem.DoctorName</strong>
+                    </div>
+                    <div class="entry-meta">
+                        <span class="page-visited">@historyItem.PageVisited</span>
+                        <span class="visit-date">@historyItem.VisitDate.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                    </div>
+                    <div class="entry-details">
+                        <div class="symptoms">
+                            <strong>Symptoms</strong> @historyItem.Symptoms
+                        </div>
+                        <div class="diagnosis">
+                            <strong>Diagnosis</strong> @historyItem.Diagnosis
+                        </div>
+                        <div class="treatment">
+                            <strong>Treatment</strong> @historyItem.Treatment
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="chat-container">
+        <h1>Health Assistant</h1>
+        <div class="chat-messages" @ref="messagesContainer">
+            @foreach (var message in messages)
+            {
+                <div class="@message.CssClass">
+                    <strong>@message.Sender</strong><br>@message.Content
+                </div>
+            }
+            @if (isAssistantTyping)
+            {
+                <div class="assistant">
+                    <strong>Ai</strong><br>
+                    <img src="https://i.imgur.com/9E9Qn.gif" alt="typing" />
+                </div>
+            }
+
+            @if (showScrollButton)
+            {
+                <button class="scroll-button" @onclick="ScrollToBottom">⬇️</button>
+            }
+        </div>
+        <div class="chat-input">
+            <input type="text" @bind="newMessage" />
+            <button @onclick="SendMessage">Send</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<ChatMessage> messages = new List<ChatMessage>();
+    private string newMessage;
+    private ElementReference messagesContainer;
+
+    private List<UserHistory> patientHistory = new List<UserHistory>
+    {
+        new UserHistory { DoctorName = "Dr. Smith", PageVisited = "Appointments", VisitDate = DateTime.Now.AddDays(-1), Symptoms = "Fever", Diagnosis = "Common Cold", Treatment = "Rest and fluids" },
+        new UserHistory { DoctorName = "Dr. Johnson", PageVisited = "Prescriptions", VisitDate = DateTime.Now.AddDays(-2), Symptoms = "Headache", Diagnosis = "Migraine", Treatment = "Prescription medication" },
+    };
+
+    private class ChatMessage
+    {
+        public string Sender { get; }
+        public string Content { get; }
+        public string CssClass { get; }
+
+        public ChatMessage(string sender, string content, string cssClass)
+        {
+            Sender = sender;
+            Content = content;
+            CssClass = cssClass;
+        }
+    }
+
+    public class UserHistory
+    {
+        public string DoctorName { get; set; }
+        public string PageVisited { get; set; }
+        public DateTime VisitDate { get; set; }
+        public string Symptoms { get; set; }
+        public string Diagnosis { get; set; }
+        public string Treatment { get; set; }
+    }
+
+    private async Task SendMessage()
+    {
+        if (!string.IsNullOrWhiteSpace(newMessage))
+        {
+            messages.Add(new ChatMessage("Patient", newMessage, "patient"));
+            newMessage = string.Empty;
+        }
+    }
+
+    private bool isAssistantTyping = false;
+    private bool showScrollButton = false;
+
+    private async Task ScrollToBottom()
+    {
+        // Logic to scroll to the bottom
+    }
+}

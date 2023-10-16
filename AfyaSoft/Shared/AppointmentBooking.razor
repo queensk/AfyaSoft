@@ -1,4 +1,5 @@
 <div class="user-appointment-form">
+    <h1>Book Appointemts</h1>
     <EditForm Model="@appointment" OnValidSubmit="@HandleValidSubmit">
         <DataAnnotationsValidator />
 
@@ -22,7 +23,7 @@
 
         <div class="form-group">
             <label for="hospital">Select Hospital</label>
-            <select id="hospital" class="form-control" @bind="@appointment.SelectedHospital">
+            <select id="hospital" class="--control" @bind="@appointment.SelectedHospital">
                 <option value="">-- Select Hospital --</option>
                 @foreach (var hospital in hospitals)
                 {
@@ -60,7 +61,6 @@
             </div>
             <ValidationMessage For="@(() => appointment.IsExistingPatient)" />
         </div>
-
         <button type="submit" class="btn btn-primary">Submit</button>
     </EditForm>
 </div>

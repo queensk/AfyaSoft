@@ -50,3 +50,18 @@
     background-color: black;
 }
 
+@media (max-width: 768px) {
+    .appointments-main-div{
+        display: flex;
+        flex-direction: column;
+    }
+    .appointment-booking-container{
+        width: 100%;
+    }
+    .appointments-container{
+        width: 100%;
+    }
+    .user-activity-container{
+        width: 100%;
+    }
+}
