@@ -6,6 +6,7 @@ using AfyaSoftAuth.Models.DTO;
 using AfyaSoftAuth.Models.DTO.Request;
 using AfyaSoftAuth.Models.DTO.Response;
 using AfyaSoftAuth.Service.IService;
+using AfySoftMessageBus.MessageBus;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,14 +19,14 @@ namespace AfyaSoftAuth.Controllers
         private readonly IUserService _userService;
         private readonly ResponseDTO  _responseDTO;
         private readonly IConfiguration _configuration;
-        // private readonly IMessageBus _messageBus;
+        private readonly IMessageBus _messageBus;
         // private readonly IMapper _mapper;
-        public UserController(IUserService userService, IConfiguration configuration)
+        public UserController(IUserService userService, IConfiguration configuration, IMessageBus messageBus)
         {
             _userService = userService;
             _responseDTO = new ResponseDTO();
             _configuration = configuration;
-            // _messageBus = messageBus;
+            _messageBus = messageBus;
         }
         [HttpPost("register")]
         public async Task<ActionResult<ResponseDTO>> Register(UserDTO userDTO)
@@ -38,6 +39,13 @@ namespace AfyaSoftAuth.Controllers
                     _responseDTO.Message = responseMessage;
                     _responseDTO.Data = userDTO;
                     // send a message to the service bus
+                    var queueName = _configuration.GetSection("QueuesandTopics:RegisterUser").Get<string>();
+                    var message = new UserMessage()
+                    {
+                        Email = userDTO.Email,
+                        Name = userDTO.Name,
+                    };
+                    await _messageBus.PublishMessage(message, queueName);
                     return Ok(_responseDTO);
                 }
                 else

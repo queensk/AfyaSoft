@@ -1,8 +1,10 @@
 using AfyaSoftAuth.Data;
+using AfyaSoftAuth.Extensions;
 using AfyaSoftAuth.Models;
 using AfyaSoftAuth.Models.DTO.JwtOptions;
 using AfyaSoftAuth.Service;
 using AfyaSoftAuth.Service.IService;
+using AfySoftMessageBus.MessageBus;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,7 +30,7 @@ builder.Services.AddCors(options => options.AddPolicy("policy1", build =>
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IJWtTokenGenerator, JwtService>();
-// builder.Services.AddScoped<IMessageBus, SocialMessageBus>();
+builder.Services.AddScoped<IMessageBus, SocialMessageBus>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -47,9 +49,12 @@ app.UseSwaggerUI(c =>
     }
 });
 
+app.UseMigration();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseAuthentication();
+app.UseCors("policy1");
 
 app.MapControllers();
 
