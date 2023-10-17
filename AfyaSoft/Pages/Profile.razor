@@ -1,0 +1,244 @@
+@page "/profile"
+
+<h1 class="display-4">Profile</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Personal Information</h5>
+                <hr />
+
+                @if (!isEditMode)
+                {
+                    <div class="form-group user-profile">
+                        @if (!string.IsNullOrEmpty(user.ProfileImage))
+                        {
+                            <img src="https://afyasoftstore.blob.core.windows.net/public/Picture1.png" alt="Profile Image" class="img-fluid" />
+                        }
+                        else
+                        {
+                            <p>No profile image available.</p>
+                        }
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <p class="form-control-static">@user.Name</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <p class="form-control-static">@user.Email</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <p class="form-control-static">@user.Phone</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <p class="form-control-static">@user.Address</p>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary" @onclick="@EditProfile">Edit Profile</button>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <InputText id="name" class="form-control" @bind-Value="@user.Name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <InputText id="email" class="form-control" @bind-Value="@user.Email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <InputText id="phone" class="form-control" @bind-Value="@user.Phone" />
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <InputText id="address" class="form-control" @bind-Value="@user.Address" />
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-image">Profile Image</label>
+                        <InputFile id="profile-image" class="form-control" />
+                        @if (!string.IsNullOrEmpty(user.ProfileImage))
+                        {
+                            <img src="https://afyasoftstore.blob.core.windows.net/public/Picture1.png" alt="Profile Image" class="mt-2" style="max-width: 100%;" />
+                        }
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" @onclick="@SaveChanges">Save Changes</button>
+                        <button class="btn btn-secondary ml-2" @onclick="@CancelChanges">Cancel</button>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">Change Password</h5>
+                <hr />
+
+                <div class="form-group">
+                    <label for="currentPassword">Current Password:</label>
+                    <InputPassword id="currentPassword" class="form-control" @bind="@currentPassword" />
+                </div>
+
+                <div class="form-group">
+                    <label for="newPassword">New Password:</label>
+                    <InputPassword id="newPassword" class="form-control" @bind="@newPassword" />
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm New Password:</label>
+                    <InputPassword id="confirmPassword" class="form-control" @bind="@confirmPassword" />
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary" @onclick="@ChangePassword">Change Password</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body user-appointment-card">
+                <h5 class="card-title">Appointments</h5>
+                <hr />
+                @if (appointments == null)
+                {
+                    <p>Loading appointments...</p>
+                }
+                else if (appointments.Count == 0)
+                {
+                    <p>No appointments found.</p>
+                }
+                else
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Doctor</th>
+                                <th>Hospital</th>
+                                <th>Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var appointment in appointments)
+                            {
+                                <tr>
+                                    <td>@appointment.Date.ToShortDateString()</td>
+                                    <td>@appointment.Doctor</td>
+                                    <td>@appointment.Hospital</td>
+                                    <td>@appointment.Reason</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private User user = new User();
+    private List<Appointment> appointments;
+    private bool isEditMode = false;
+    private string currentPassword;
+    private string newPassword;
+    private string confirmPassword;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Demo data for the user
+        user = new User
+        {
+            Name = "John Doe",
+            Email = "john.doe@example.com",
+            Phone = "123-456-7890",
+            Address = "123 Main St, Cityville",
+            ProfileImage = "https://example.com/profile-image.jpg"
+        };
+
+        // Demo data for appointments
+        appointments = new List<Appointment>
+        {
+            new Appointment
+            {
+                Date = DateTime.Now.AddDays(1),
+                Doctor = "Dr. Smith",
+                Hospital = "City Hospital",
+                Reason = "Routine checkup"
+            },
+            new Appointment
+            {
+                Date = DateTime.Now.AddDays(7),
+                Doctor = "Dr. Johnson",
+                Hospital = "County Medical Center",
+                Reason = "Follow-up appointment"
+            },
+            // Add more sample appointments as needed
+        };
+    }
+
+    private class User
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Address { get; set; }
+        public string ProfileImage { get; set; }
+    }
+
+    private class Appointment
+    {
+        public DateTime Date { get; set; }
+        public string Doctor { get; set; }
+        public string Hospital { get; set; }
+        public string Reason { get; set; }
+    }
+
+    private void EditProfile()
+    {
+        isEditMode = !isEditMode;
+    }
+
+    private void CancelChanges()
+    {
+        isEditMode = false;
+    }
+
+    private async Task SaveChanges()
+    {
+        isEditMode = false;
+    }
+
+    private void ChangePassword()
+    {
+        // Implement password change logic here
+    }
+
+    private string selectedImage;
+
+    private async Task HandleProfileImageChange(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file != null)
+        {
+
+            var buffer = new byte[file.Size];
+            await file.OpenReadStream().ReadAsync(buffer);
+            var base64String = Convert.ToBase64String(buffer);
+            selectedImage = $"data:{file.ContentType};base64,{base64String}";
+        }
+        else
+        {
+            selectedImage = null;
+        }
+    }
+}

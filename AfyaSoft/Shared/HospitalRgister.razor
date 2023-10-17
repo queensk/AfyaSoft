@@ -1,0 +1,54 @@
+<div class="hospital-form">
+    <h1>Register Hospital</h1>
+    <EditForm Model="@hospital" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator />
+
+        <div class="form-group">
+            <label for="hospital-name">Hospital Name</label>
+            <InputText id="hospital-name" class="form-control" placeholder="Enter hospital name" @bind-Value="@hospital.Name" />
+            <ValidationMessage For="@(() => hospital.Name)" />
+        </div>
+
+        <div class="form-group">
+            <label for="hospital-location">Location</label>
+            <InputText id="hospital-location" class="form-control" placeholder="Enter hospital location" @bind-Value="@hospital.Location" />
+            <ValidationMessage For="@(() => hospital.Location)" />
+        </div>
+
+        <div class="form-group">
+            <label for="hospital-description">Description</label>
+            <InputTextArea id="hospital-description" class="form-control" @bind-Value="@hospital.Description" placeholder="Enter hospital description" />
+            <ValidationMessage For="@(() => hospital.Description)" />
+        </div>
+
+        <div class="form-group">
+            <label for="hospital-type">Hospital Type</label>
+            <select id="hospital-type" class="form-control" @bind="@hospital.Type">
+                <option value="">-- Select Hospital Type --</option>
+                <option value="Public">Public</option>
+                <option value="Private">Private</option>
+            </select>
+            <ValidationMessage For="@(() => hospital.Type)" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </EditForm>
+</div>
+
+@code {
+
+    public class Hospital
+    {
+        public string Name { get; set; }
+        public string Location { get; set; }
+        public string Description { get; set; }
+        public string Type { get; set; }
+    }
+    private Hospital hospital = new Hospital();
+
+    private async Task HandleValidSubmit()
+    {
+        // Handle form submission here
+    }
+}
+

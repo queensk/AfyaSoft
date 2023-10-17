@@ -1,0 +1,94 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    padding-top: 70px;
+    color: grey;
+}
+
+.jumbotron {
+    background-color: #1D9BF0;
+    color: #fff;
+    padding: 100px 20px;
+    margin-bottom: 0;
+}
+
+.feature-box {
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.feature-box h3 {
+    color: #1D9BF0;
+}
+
+.signup-btn {
+    background-color: #3163E0;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+#features{
+    margin: 12rem 0;
+}
+
+
+
+.signup-btn:hover {
+    background-color: #7031E0;
+    color: #fff;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+#about{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.about-img img{
+    border-radius: 2rem;
+}
+.about-text {
+    padding: 2rem;
+    
+}
+.about-text p{
+    font-size: 1.3rem;
+}
+
+#about h2 {
+    color: #007bff;
+    font-size: 5rem;
+    border-right: 1rem solid #7031E0;
+    border-left: 1rem solid #7031E0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#footer{
+    margin-top: 6rem;
+}
+
+@media (max-width: 768px) {
+    .who-we-are{
+        display: block;
+    }
+    .about-img {
+        margin-bottom: 1.2rem;
+        width: 100%;
+    }
+    .about-text-container{
+        width:  100%;
+    }
+    .about-text {
+        text-align: center; 
+        width: 100%;
+    }
+}

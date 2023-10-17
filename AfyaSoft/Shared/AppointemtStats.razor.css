@@ -1,0 +1,75 @@
+.appointments-start-card{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+    border: 2px solid #F2F2F2;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: aliceblue;
+}
+
+.start-card-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.start-card-icon{
+    padding: 1rem;
+    border-radius: .8rem;
+    margin-right: 1rem;
+}
+
+.start-card-icon svg{
+
+    height: 2rem;
+    width: 2rem;
+}
+
+.start-card-icon-appointments{
+    background-color: #FFF2E9;
+}
+
+.start-card-icon-appointments svg{
+    color: #FF6A00;
+}
+
+.start-card-icon-records{
+    background-color: #EDE8FF;
+}
+
+.start-card-icon-records svg{
+    color: #000
+}
+
+.start-card-icon-emails{
+    background-color: #CEE5FD;
+}
+
+.start-card-icon-emails svg{
+    color: #00B7FE;
+}
+.start-card-icon-feedback{
+    background-color: #FFEBEF;
+}
+
+.start-card-icon-feedback svg{
+    color: #D15858;
+}
+
+.start-card-text p{
+    margin: 0;
+    color: #92959E;
+}
+
+.start-card-number{
+    font-size: 2rem;
+    color: black !important;
+}
+
+@media (max-width: 768px) {
+    .appointments-start-card{
+        flex-wrap: wrap;
+    }
+}

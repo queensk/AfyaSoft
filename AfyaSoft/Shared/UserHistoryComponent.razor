@@ -1,0 +1,76 @@
+@* @inject NavigationManager *@
+@inject NavigationManager NavigationContext;
+
+<div class="user-history-form">
+    <h1>User History</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Doctor</th>
+                <th>Page Visited</th>
+                <th>Email</th>
+                <th>Visit Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var historyItem in userHistory)
+            {
+                <tr>
+                    <td>@historyItem.DoctorName</td>
+                    <td>@historyItem.PageVisited</td>
+                    <td>@historyItem.Email</td>
+                    <td>@historyItem.VisitDate.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                <td>
+                    <button class="custom-button" @onclick="() => StartChat(historyItem)">Chat</button>
+                    <button class="custom-button" @onclick="() => EditRecord(historyItem)">Edit</button>
+                    <button class="custom-button" @onclick="() => DeleteRecord(historyItem)">Delete</button>
+                    <button class="custom-button" @onclick="NavigateToHome">Ai Assistant</button>
+                </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+
+    public class UserHistory
+    {
+        public string DoctorName { get; set; }
+        public string PageVisited { get; set; }
+        public string Email { get; set; }
+        public DateTime VisitDate { get; set; } // You can include a timestamp for each visit
+    }
+    
+    private List<UserHistory> userHistory = new List<UserHistory>
+    {
+        new UserHistory { DoctorName = "Dr. Smith", PageVisited = "Appointments", Email = "user@example.com", VisitDate = DateTime.Now.AddDays(-1) },
+        new UserHistory { DoctorName = "Dr. Johnson", PageVisited = "Prescriptions", Email = "user@example.com", VisitDate = DateTime.Now.AddDays(-2) },
+    };
+
+    private void StartChat(UserHistory historyItem)
+    {
+        // Implement logic to start a chat with the specified user
+        // You can navigate to a chat page or display a modal for the chat
+        // Example: NavigationManager.NavigateTo($"/chat?userId={historyItem.Email}");
+    }
+
+    private void NavigateToHome()
+    {
+        NavigationContext.NavigateTo("/chat");
+    }
+    private void EditRecord(UserHistory historyItem)
+    {
+        // Implement logic to edit the selected record
+        // You can navigate to an edit page or display a modal for editing
+        // Example: NavigationManager.NavigateTo($"/edit?userId={historyItem.Email}");
+    }
+
+    private void DeleteRecord(UserHistory historyItem)
+    {
+        // Implement logic to delete the selected record
+        // You can prompt the user for confirmation and then remove the record from the list
+        userHistory.Remove(historyItem);
+    }
+}

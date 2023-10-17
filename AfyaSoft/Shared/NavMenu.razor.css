@@ -32,26 +32,68 @@
     }
 
     .nav-item ::deep a {
-        color: #d7d7d7;
-        border-radius: 4px;
+        color: #212122;
+        border-radius: 2rem;
         height: 3rem;
         display: flex;
         align-items: center;
         line-height: 3rem;
+        font-size: 1.2rem;
+    }
+
+    .nav-icon-center{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .nav-item ::deep a svg{
+        height: 25px;
+        width: 25px;
     }
 
 .nav-item ::deep a.active {
-    background-color: rgba(255,255,255,0.25);
+    background-color: #1D9BF0;
     color: white;
+    border-radius: 2rem;
 }
 
 .nav-item ::deep a:hover {
-    background-color: rgba(255,255,255,0.1);
+    background-color: #1D9BF0;
     color: white;
+    border-radius: 2rem;
+}
+
+.user-icon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* width: 1005; */
+}
+.user-icon img {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.user-icon p {
+    color: #fff;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.navbar-top{
+    display: block;
 }
 
 @media (min-width: 641px) {
     .navbar-toggler {
+        display: none;
+    }
+    .navbar-top{
         display: none;
     }
 
