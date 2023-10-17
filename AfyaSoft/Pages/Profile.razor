@@ -225,9 +225,9 @@
 
     private string selectedImage;
 
-    private async Task HandleProfileImageChange(InputFileChangeEventArgs e)
+    private async Task HandleProfileImageChange()
     {
-        var file = e.File;
+        @* var file = ""
         if (file != null)
         {
 
@@ -239,6 +239,6 @@
         else
         {
             selectedImage = null;
-        }
+        } *@
     }
 }

@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "AfyaSoft": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:54333;http://localhost:54334"
+    }
+  }
+}
