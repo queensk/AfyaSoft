@@ -5,6 +5,18 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfyaSoft", "AfyaSoft\AfyaSoft.csproj", "{9C015DD9-A93D-4995-A972-E8172B46F0A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfyaSoftAuth", "AfyaSoftAuth\AfyaSoftAuth.csproj", "{1C010E5C-F9F3-417B-A9FC-529BE0AC7C8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfySoftMessageBus", "AfySoftMessageBus\AfySoftMessageBus.csproj", "{BD6F5B28-FDAB-48E4-A3F5-C8FAF7B5636B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfyaSoftEmail", "AfyaSoftEmail\AfyaSoftEmail.csproj", "{C1F4BF8C-E841-49A9-87B0-0CC7C9592E15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfyaSoftAppointment", "AfyaSoftAppointment\AfyaSoftAppointment.csproj", "{0353B458-C829-42DA-8401-26726DF6F5EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfyaSoftFeedBack", "AfyaSoftFeedBack\AfyaSoftFeedBack.csproj", "{06B826D0-1A2C-45D5-9096-7FBAB22CEFD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfyaSoftPayment", "AfyaSoftPayment\AfyaSoftPayment.csproj", "{6FCCAAA2-661A-407E-9621-29C30CCE901E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +27,30 @@ Global
 		{9C015DD9-A93D-4995-A972-E8172B46F0A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C015DD9-A93D-4995-A972-E8172B46F0A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C015DD9-A93D-4995-A972-E8172B46F0A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C010E5C-F9F3-417B-A9FC-529BE0AC7C8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C010E5C-F9F3-417B-A9FC-529BE0AC7C8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C010E5C-F9F3-417B-A9FC-529BE0AC7C8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C010E5C-F9F3-417B-A9FC-529BE0AC7C8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD6F5B28-FDAB-48E4-A3F5-C8FAF7B5636B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD6F5B28-FDAB-48E4-A3F5-C8FAF7B5636B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD6F5B28-FDAB-48E4-A3F5-C8FAF7B5636B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD6F5B28-FDAB-48E4-A3F5-C8FAF7B5636B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1F4BF8C-E841-49A9-87B0-0CC7C9592E15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1F4BF8C-E841-49A9-87B0-0CC7C9592E15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1F4BF8C-E841-49A9-87B0-0CC7C9592E15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1F4BF8C-E841-49A9-87B0-0CC7C9592E15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0353B458-C829-42DA-8401-26726DF6F5EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0353B458-C829-42DA-8401-26726DF6F5EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0353B458-C829-42DA-8401-26726DF6F5EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0353B458-C829-42DA-8401-26726DF6F5EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06B826D0-1A2C-45D5-9096-7FBAB22CEFD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06B826D0-1A2C-45D5-9096-7FBAB22CEFD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06B826D0-1A2C-45D5-9096-7FBAB22CEFD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06B826D0-1A2C-45D5-9096-7FBAB22CEFD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FCCAAA2-661A-407E-9621-29C30CCE901E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FCCAAA2-661A-407E-9621-29C30CCE901E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FCCAAA2-661A-407E-9621-29C30CCE901E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FCCAAA2-661A-407E-9621-29C30CCE901E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
